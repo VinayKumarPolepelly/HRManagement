@@ -133,7 +133,7 @@ const Logout = ({ user1, handleLogout }) => (
       <h1 className="mt-4 mb-3 text-blue-900">{user1.fullname}</h1>
       <button
         onClick={handleLogout}
-        className="text-sm text-blue-700 border-2 p-2 border-blue-900 hover:border-blue-900 hover:shadow-lg active:border-blue-700 rounded-lg"
+        className="text-sm text-white border-2 p-2 bg-blue-500 hover:bg-blue-600  active:bg-blue-800  hover:shadow-lg active:border-blue-700 rounded-lg"
       >
         Logout
       </button>

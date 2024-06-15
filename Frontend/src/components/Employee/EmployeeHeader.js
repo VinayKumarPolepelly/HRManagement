@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaUser } from 'react-icons/fa'
-import { BASE_URL } from '../helper'
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { BASE_URL } from "../helper";
 
 const UserProfileIcon = ({ si }) => (
   <div>
     <FaUser size={si} />
   </div>
-)
+);
 
 const Logout = ({ handleLogout, user }) => (
   <div className="flex justify-end ">
@@ -18,19 +18,19 @@ const Logout = ({ handleLogout, user }) => (
       {user && <h1 className="mt-4 ml-1 mb-3">{user.fullname}</h1>}
       <button
         onClick={handleLogout}
-        className="text-sm text-white ml-1 border-2 p-[7px] bg-blue-500 hover:bg-blue-600 hover:shadow-lg active:bg-blue-900 rounded-lg active:border-collapse active:font-semibold active:shadow-2xl"
+        className="text-sm text-white ml-1 border-2 p-[7px] bg-blue-500 hover:bg-blue-600 hover:shadow-lg active:bg-blue-800 rounded-lg active:border-collapse active:font-semibold active:shadow-2xl"
       >
         LogOut
       </button>
     </div>
   </div>
-)
+);
 
 const EmployeeHeader = () => {
-  const [showItem, setShowItem] = useState(false)
-  const navigate = useNavigate()
-  const [user, setUser] = useState(null)
-  const [error, setError] = useState(null)
+  const [showItem, setShowItem] = useState(false);
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -38,49 +38,49 @@ const EmployeeHeader = () => {
         const response = await fetch(
           `${BASE_URL}/api/v1/users/getUserDetails`,
           {
-            method: 'GET',
-            credentials: 'include', // Include credentials (cookies)
+            method: "GET",
+            credentials: "include", // Include credentials (cookies)
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           }
-        )
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const json = await response.json()
-        setUser(json.user)
-        console.log(json.user)
+        const json = await response.json();
+        setUser(json.user);
+        console.log(json.user);
       } catch (error) {
-        if (error.message === 'Network response was not ok') navigate('/')
-        setError('Error fetching employee data')
+        if (error.message === "Network response was not ok") navigate("/");
+        setError("Error fetching employee data");
       }
-    }
+    };
 
-    fetchUsers()
-  }, [navigate])
+    fetchUsers();
+  }, [navigate]);
 
   const handleLogout = async () => {
     try {
       const response = await fetch(`${BASE_URL}/api/v1/users/logout`, {
-        method: 'POST',
-        credentials: 'include',
+        method: "POST",
+        credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-      })
+      });
       if (!response.ok) {
-        throw new Error('Network response was not ok')
+        throw new Error("Network response was not ok");
       }
       if (response.ok) {
-        navigate('/') // Redirect to the login page after successful logout
+        navigate("/"); // Redirect to the login page after successful logout
       } else {
-        console.error('Logout failed:', response.statusText)
+        console.error("Logout failed:", response.statusText);
       }
     } catch (error) {
-      console.error('Error logging out:', error)
+      console.error("Error logging out:", error);
     }
-  }
+  };
 
   return (
     <div>
@@ -121,7 +121,7 @@ const EmployeeHeader = () => {
         {showItem && <Logout handleLogout={handleLogout} user={user} />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EmployeeHeader
+export default EmployeeHeader;
