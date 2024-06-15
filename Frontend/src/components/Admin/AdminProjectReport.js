@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import AdminHeader from "./AdminHeader";
-import { AiTwotoneDelete } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../helper";
+import React, { useEffect, useState } from 'react'
+import AdminHeader from './AdminHeader'
+import { AiTwotoneDelete } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../helper'
+import Footer from '../footer/Footer'
 const AdminProjectReport = () => {
-  const [projectReports, setProjectReports] = useState([]);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [projectReports, setProjectReports] = useState([])
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchProjectReportDetails = async () => {
@@ -14,31 +15,31 @@ const AdminProjectReport = () => {
         const response = await fetch(
           `${BASE_URL}/api/v1/admins/getProjectReports`,
           {
-            method: "GET",
-            credentials: "include", // Include credentials (cookies)
+            method: 'GET',
+            credentials: 'include', // Include credentials (cookies)
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
           }
-        );
+        )
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok')
         }
-        const json = await response.json();
+        const json = await response.json()
         if (json?.projectReports) {
-          setProjectReports(json.projectReports);
-          console.log(json.projectReports);
+          setProjectReports(json.projectReports)
+          console.log(json.projectReports)
         } else {
-          throw new Error("No project Reports field in response");
+          throw new Error('No project Reports field in response')
         }
       } catch (error) {
-        if (error.message === "Network response was not ok") navigate("/");
-        setError("Error fetching project Reports data");
+        if (error.message === 'Network response was not ok') navigate('/')
+        setError('Error fetching project Reports data')
       }
-    };
+    }
 
-    fetchProjectReportDetails();
-  }, [navigate]);
+    fetchProjectReportDetails()
+  }, [navigate])
   return (
     <div>
       <AdminHeader />
@@ -77,7 +78,7 @@ const AdminProjectReport = () => {
                         {report.report}
                       </td>
                     </tr>
-                  );
+                  )
                 })}
               </tbody>
             </table>
@@ -85,8 +86,9 @@ const AdminProjectReport = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default AdminProjectReport;
+export default AdminProjectReport

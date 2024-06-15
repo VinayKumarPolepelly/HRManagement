@@ -1,10 +1,11 @@
 import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'tailwindcss/tailwind.css'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="relative bg-blue-900 pt-8 pb-6">
+    <footer className="relative bg-blue-900 pt-8 pb-6 mt-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full lg:w-6/12 px-4">
@@ -25,7 +26,9 @@ const Footer = () => {
                 className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               >
-                <i className="fab fa-linkedin"></i>
+                <a href="https://www.instagram.com/codeclub_rguktb/">
+                  <i className="fab fa-linkedin"></i>
+                </a>
               </button>
               <button
                 className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
@@ -48,13 +51,8 @@ const Footer = () => {
                   Quick Links
                 </span>
                 <ul className="list-unstyled">
-                  <li>
-                    <a
-                      className="text-white hover:underline font-semibold block pb-2 text-sm"
-                      href="/about-us"
-                    >
-                      About Us
-                    </a>
+                  <li className="text-white hover:underline font-semibold block pb-2 text-sm">
+                    <Link to="/about-hr/">About us</Link>
                   </li>
                   <li>
                     <a

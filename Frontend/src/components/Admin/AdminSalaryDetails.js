@@ -1,88 +1,89 @@
-import React, { useEffect, useState } from "react";
-import AdminHeader from "./AdminHeader";
-import { AiTwotoneDelete } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../helper";
-import { toast, ToastContainer } from "react-toastify"; // Import ToastContainer and toast
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState } from 'react'
+import AdminHeader from './AdminHeader'
+import { AiTwotoneDelete } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../helper'
+import { toast, ToastContainer } from 'react-toastify' // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'
+import Footer from '../footer/Footer'
 const AdminSalaryDetails = () => {
-  const [salaries, setSalaries] = useState([]);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [salaries, setSalaries] = useState([])
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchSalaryDetails = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/v1/admins/getSalarees`, {
-          method: "GET",
-          credentials: "include", // Include credentials (cookies)
+          method: 'GET',
+          credentials: 'include', // Include credentials (cookies)
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
-        });
+        })
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok')
         }
-        const json = await response.json();
+        const json = await response.json()
         if (json?.salarees) {
-          setSalaries(json.salarees);
+          setSalaries(json.salarees)
         } else {
-          throw new Error("No Salary field in response");
+          throw new Error('No Salary field in response')
         }
       } catch (error) {
-        if (error.message === "Network response was not ok") navigate("/");
-        setError("Error fetching Salaries data");
+        if (error.message === 'Network response was not ok') navigate('/')
+        setError('Error fetching Salaries data')
       }
-    };
+    }
 
-    fetchSalaryDetails();
-  }, [navigate]);
+    fetchSalaryDetails()
+  }, [navigate])
 
   const handleDeleteSalary = async (salaryId) => {
-    const url = `${BASE_URL}/api/v1/admins/deleteSalary`;
+    const url = `${BASE_URL}/api/v1/admins/deleteSalary`
     const data = {
       salaryId: salaryId,
-    };
+    }
 
-    const salarydetails = JSON.stringify(data);
+    const salarydetails = JSON.stringify(data)
 
     try {
       const response = await fetch(url, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: salarydetails,
-      });
+      })
 
-      const data2 = await response.json();
+      const data2 = await response.json()
       if (!response.ok) {
-        console.log(data2);
-        setError(data2?.message);
+        console.log(data2)
+        setError(data2?.message)
       } else {
-        toast.success("Salary Deleted Successfully");
+        toast.success('Salary Deleted Successfully')
         // Remove the deleted employee from the state
         setSalaries((prevsalarees) =>
           prevsalarees.filter((salary) => salary._id !== salaryId)
-        );
+        )
       }
     } catch (error) {
-      console.error("Submit error:", error);
-      setError("Error submitting employee data");
+      console.error('Submit error:', error)
+      setError('Error submitting employee data')
     }
-  };
+  }
 
   const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  };
+    const date = new Date(timestamp)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const hours = String(date.getHours()).padStart(2, '0')
+    const minutes = String(date.getMinutes()).padStart(2, '0')
+    const seconds = String(date.getSeconds()).padStart(2, '0')
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  }
 
   return (
     <div>
@@ -168,8 +169,9 @@ const AdminSalaryDetails = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default AdminSalaryDetails;
+export default AdminSalaryDetails

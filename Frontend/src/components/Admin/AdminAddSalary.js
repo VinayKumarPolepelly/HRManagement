@@ -1,73 +1,74 @@
-import React, { useEffect, useRef, useState } from "react";
-import AdminHeader from "./AdminHeader";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../helper";
-import { toast, ToastContainer } from "react-toastify"; // Import ToastContainer and toast
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useRef, useState } from 'react'
+import AdminHeader from './AdminHeader'
+import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../helper'
+import { toast, ToastContainer } from 'react-toastify' // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'
+import Footer from '../footer/Footer'
 
 const AdminAddSalary = () => {
-  const [employees, setEmployees] = useState([]);
-  const [error, setError] = useState(null); // Add state for error
-  const navigate = useNavigate();
-  const formRef = useRef(null); // Add a reference to the form element
+  const [employees, setEmployees] = useState([])
+  const [error, setError] = useState(null) // Add state for error
+  const navigate = useNavigate()
+  const formRef = useRef(null) // Add a reference to the form element
 
   useEffect(() => {
     const fetchEmployeeDetails = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/v1/admins/getEmployees`, {
-          method: "GET",
-          credentials: "include", // Include credentials (cookies)
+          method: 'GET',
+          credentials: 'include', // Include credentials (cookies)
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
-        });
+        })
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok')
         }
-        const data = await response.json();
-        setEmployees(data);
+        const data = await response.json()
+        setEmployees(data)
       } catch (error) {
-        if (error.message === "Network response was not ok") navigate("/");
-        setError("Error fetching employee data"); // Set error message
+        if (error.message === 'Network response was not ok') navigate('/')
+        setError('Error fetching employee data') // Set error message
       }
-    };
+    }
 
-    fetchEmployeeDetails();
-  }, [navigate]);
+    fetchEmployeeDetails()
+  }, [navigate])
 
-  const user = useRef();
-  const month = useRef();
-  const salaryAmount = useRef();
+  const user = useRef()
+  const month = useRef()
+  const salaryAmount = useRef()
 
   const handlesubmitform = async (e) => {
-    e.preventDefault();
-    const url = `${BASE_URL}/api/v1/admins/addEmployeeSalary`;
+    e.preventDefault()
+    const url = `${BASE_URL}/api/v1/admins/addEmployeeSalary`
 
     const data = {
       user: user.current.value,
       month: month.current.value,
       salaryAmount: salaryAmount.current.value,
-    };
+    }
 
-    const salaryDetails = JSON.stringify(data);
+    const salaryDetails = JSON.stringify(data)
     //console.log(salaryDetails);
     const response = await fetch(url, {
-      method: "POST",
-      credentials: "include",
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: salaryDetails,
-    });
-    const data2 = await response.json();
+    })
+    const data2 = await response.json()
     if (response.ok === true) {
-      toast.success("Salary added successfully");
-      formRef.current.reset(); // Reset the form upon successful submission
+      toast.success('Salary added successfully')
+      formRef.current.reset() // Reset the form upon successful submission
     } else {
-      if (error === "Network response was not ok") navigate("/");
-      toast.error(data2.message);
+      if (error === 'Network response was not ok') navigate('/')
+      toast.error(data2.message)
     }
-  };
+  }
 
   return (
     <div>
@@ -137,8 +138,9 @@ const AdminAddSalary = () => {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default AdminAddSalary;
+export default AdminAddSalary

@@ -3,6 +3,7 @@ import EmployeeHeader from './EmployeeHeader'
 import ApplyForLeave from './ApplyForLeave'
 
 import { BASE_URL } from '../helper'
+import Footer from '../footer/Footer'
 
 const LeaveReport = () => {
   const [showItem, setShowItem] = useState(false)
@@ -155,6 +156,7 @@ const LeaveReport = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   )

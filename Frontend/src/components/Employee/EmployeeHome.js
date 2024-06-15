@@ -1,5 +1,6 @@
-import React from "react";
-import EmployeeHeader from "./EmployeeHeader";
+import React from 'react'
+import EmployeeHeader from './EmployeeHeader'
+import Footer from '../footer/Footer'
 
 const EmployeeHome = () => {
   return (
@@ -13,9 +14,10 @@ const EmployeeHome = () => {
             className="w-[70%]"
           />
         </div>
+        <Footer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EmployeeHome;
+export default EmployeeHome

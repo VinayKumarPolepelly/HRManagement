@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import EmployeeHeader from "./EmployeeHeader";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../helper";
+import React, { useEffect, useState } from 'react'
+import EmployeeHeader from './EmployeeHeader'
+import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../helper'
+import Footer from '../footer/Footer'
 
 const ProjectDetails = () => {
-  const [projects, setProjects] = useState([]);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [projects, setProjects] = useState([])
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchProjectDetails = async () => {
@@ -14,38 +15,38 @@ const ProjectDetails = () => {
         const response = await fetch(
           `${BASE_URL}/api/v1/users/getProjectDetails`,
           {
-            method: "GET",
-            credentials: "include", // Include credentials (cookies)
+            method: 'GET',
+            credentials: 'include', // Include credentials (cookies)
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
           }
-        );
+        )
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok')
         }
-        const json = await response.json();
+        const json = await response.json()
         if (json?.projects) {
-          setProjects(json.projects);
-          console.log(json.projects);
+          setProjects(json.projects)
+          console.log(json.projects)
         } else {
-          throw new Error("No projects field in response");
+          throw new Error('No projects field in response')
         }
       } catch (error) {
-        console.log(error);
+        console.log(error)
         //if (error.message === "Network response was not ok") navigate("/");
-        setError("Error fetching project data");
+        setError('Error fetching project data')
       }
-    };
+    }
 
-    fetchProjectDetails();
-  }, [navigate]);
+    fetchProjectDetails()
+  }, [navigate])
 
   return (
     <div>
       <div>
         <EmployeeHeader />
-        <div className="p-2">
+        <div className="p-2 mb-80">
           <div className="bg-gray-50 rounded-t-2xl m-auto mt-6 p-1">
             <div className="bg-blue-900 p-3 rounded-t-2xl text-center">
               <h1 className="text-white font-bold text-xl ">PROJECT DETAILS</h1>
@@ -121,8 +122,9 @@ const ProjectDetails = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default ProjectDetails;
+export default ProjectDetails

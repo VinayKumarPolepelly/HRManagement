@@ -1,24 +1,25 @@
-import React, { useRef, useState } from "react";
-import AdminHeader from "./AdminHeader";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../helper";
-import { toast, ToastContainer } from "react-toastify"; // Import ToastContainer and toast
-import "react-toastify/dist/ReactToastify.css";
+import React, { useRef, useState } from 'react'
+import AdminHeader from './AdminHeader'
+import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../helper'
+import { toast, ToastContainer } from 'react-toastify' // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'
+import Footer from '../footer/Footer'
 
 const AdminAddEmployee = () => {
-  const [error, setError] = useState(null);
-  const username = useRef();
-  const fullname = useRef();
-  const email = useRef();
-  const password = useRef();
-  const phoneNumber = useRef();
-  const role = useRef();
-  const formRef = useRef(null); // Add a reference to the form element
-  const navigate = useNavigate();
+  const [error, setError] = useState(null)
+  const username = useRef()
+  const fullname = useRef()
+  const email = useRef()
+  const password = useRef()
+  const phoneNumber = useRef()
+  const role = useRef()
+  const formRef = useRef(null) // Add a reference to the form element
+  const navigate = useNavigate()
 
   const handlesubmitform = async (e) => {
-    e.preventDefault();
-    const url = `${BASE_URL}/api/v1/admins/register`;
+    e.preventDefault()
+    const url = `${BASE_URL}/api/v1/admins/register`
 
     const data = {
       username: username.current.value,
@@ -27,27 +28,27 @@ const AdminAddEmployee = () => {
       email: email.current.value,
       phoneNumber: phoneNumber.current.value,
       role: role.current.value,
-    };
+    }
 
-    const userDetails = JSON.stringify(data);
-    console.log(userDetails);
+    const userDetails = JSON.stringify(data)
+    console.log(userDetails)
     const response = await fetch(url, {
-      method: "POST",
-      credentials: "include",
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: userDetails,
-    });
-    const data2 = await response.json();
+    })
+    const data2 = await response.json()
     if (response.ok === true) {
-      toast.success("Employee added successfully");
-      formRef.current.reset(); // Reset the form upon successful submission
+      toast.success('Employee added successfully')
+      formRef.current.reset() // Reset the form upon successful submission
     } else {
-      if (error === "Network response was not ok") navigate("/");
-      toast.error(data2.message);
+      if (error === 'Network response was not ok') navigate('/')
+      toast.error(data2.message)
     }
-  };
+  }
 
   return (
     <div>
@@ -134,7 +135,7 @@ const AdminAddEmployee = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminAddEmployee;
+export default AdminAddEmployee

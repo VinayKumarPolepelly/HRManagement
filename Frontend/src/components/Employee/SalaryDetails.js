@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import EmployeeHeader from "./EmployeeHeader";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../helper";
+import React, { useEffect, useState } from 'react'
+import EmployeeHeader from './EmployeeHeader'
+import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../helper'
+import Footer from '../footer/Footer'
 
 const SalaryDetails = () => {
-  const [salary, setSalary] = useState([]);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [salary, setSalary] = useState([])
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchSalaryDetails = async () => {
@@ -14,44 +15,44 @@ const SalaryDetails = () => {
         const response = await fetch(
           `${BASE_URL}/api/v1/users/getSalareeDetails`,
           {
-            method: "GET",
-            credentials: "include", // Include credentials (cookies)
+            method: 'GET',
+            credentials: 'include', // Include credentials (cookies)
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
           }
-        );
+        )
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok')
         }
-        const json = await response.json();
-        console.log(json);
+        const json = await response.json()
+        console.log(json)
         if (json?.salarees) {
-          setSalary(json.salarees);
+          setSalary(json.salarees)
           //console.log(json.salarees);
         } else {
-          throw new Error("No salaries field in response");
+          throw new Error('No salaries field in response')
         }
       } catch (error) {
         //if (error.message === "Network response was not ok") navigate("/");
-        console.log(error);
-        setError("Error fetching project data");
+        console.log(error)
+        setError('Error fetching project data')
       }
-    };
+    }
 
-    fetchSalaryDetails();
-  }, [navigate]);
+    fetchSalaryDetails()
+  }, [navigate])
 
   const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  };
+    const date = new Date(timestamp)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const hours = String(date.getHours()).padStart(2, '0')
+    const minutes = String(date.getMinutes()).padStart(2, '0')
+    const seconds = String(date.getSeconds()).padStart(2, '0')
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  }
 
   return (
     <div>
@@ -102,8 +103,9 @@ const SalaryDetails = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default SalaryDetails;
+export default SalaryDetails
