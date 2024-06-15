@@ -307,6 +307,57 @@ const deleteSalary = async (req, res) => {
   }
 };
 
+const deleteProjectReport = async (req, res) => {
+  try {
+    const { reportId } = req.body;
+    const instance = await ProjectReport.findByIdAndDelete({ _id: reportId });
+    if (!instance)
+      return res.status(400).json({ message: "Something went wrong" });
+    return res.status(200).json({ message: "Report deleted successfully" });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+const fetchSingleProject = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const project = await Project.findById(projectId);
+    if (!project) return res.status(400).json({ message: "project not found" });
+    return res.status(200).json({ project: project });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const updateProjectDetails = async (req, res) => {
+  const { projectId } = req.params;
+  const updateData = req.body;
+
+  try {
+    // Find the project by ID and update with the provided data
+    const updatedProject = await Project.findByIdAndUpdate(
+      projectId,
+      updateData,
+      { new: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    res
+      .status(200)
+      .json({
+        message: "Project updated successfully",
+        project: updatedProject,
+      });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating project", error });
+  }
+};
+
 export {
   loginAdmin,
   addSalary,
@@ -320,4 +371,7 @@ export {
   updateLeaveReport,
   deleteEmployee,
   deleteSalary,
+  deleteProjectReport,
+  fetchSingleProject,
+  updateProjectDetails,
 };

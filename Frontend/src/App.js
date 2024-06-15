@@ -18,6 +18,7 @@ import AdminProjectReport from "./components/Admin/AdminProjectReport";
 import AdminLeaveReport from "./components/Admin/AdminLeaveReport";
 import Browse from "./components/Browse";
 import AdminAddEmployee from "./components/Admin/AdminAddEmployee";
+import AdminEditProject from "./components/Admin/AdminEditProject";
 const Applayout = () => {
   return (
     <div>
@@ -79,6 +80,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/admin/addEmployee",
         element: <AdminAddEmployee />,
+      },
+      {
+        path: "/admin/editProject/:projectId",
+        element: <AdminEditProject />,
       },
       {
         path: "/Adminlogin/",

@@ -61,9 +61,6 @@ const AdminProjectReport = () => {
                   <th className="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Report
                   </th>
-                  <th className="px-6 py-3  bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Action
-                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -78,13 +75,6 @@ const AdminProjectReport = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-no-wrap font-normal text-center">
                         {report.report}
-                      </td>
-                      <td className="px-6 py-4 whitespace-no-wrap font-normal text-center">
-                        <div className="flex justify-center items-center">
-                          <button className="text-center">
-                            <AiTwotoneDelete className=" w-5 h-5" />
-                          </button>
-                        </div>
                       </td>
                     </tr>
                   );

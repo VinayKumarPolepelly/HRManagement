@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminHeader from "./AdminHeader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../helper";
 
 const AdminProjectDetails = () => {
@@ -110,9 +110,11 @@ const AdminProjectDetails = () => {
                         </td>
                         <td className="px-6 py-3 w-1/12 whitespace-wrap break-all font-normal text-center">
                           <div className="flex justify-center items-center">
-                            <button className="mx-3 text-blue-500 hover:text-blue-700  hover:underline ">
-                              Edit
-                            </button>
+                            <Link to={`/admin/editProject/${project._id}`}>
+                              <button className="mx-3 text-blue-500 hover:text-blue-700  hover:underline ">
+                                Edit
+                              </button>
+                            </Link>
                           </div>
                         </td>
                       </tr>

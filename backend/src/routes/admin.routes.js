@@ -3,7 +3,9 @@ import {
   addProject,
   addSalary,
   deleteEmployee,
+  deleteProjectReport,
   deleteSalary,
+  fetchSingleProject,
   getEmployeesList,
   getLeaveReportList,
   getProjectList,
@@ -12,6 +14,7 @@ import {
   loginAdmin,
   registerUser,
   updateLeaveReport,
+  updateProjectDetails,
 } from "../controllers/Admin.controller.js";
 import { verifyAdmin, verifyJwt } from "../middlewares/auth.middleware.js";
 import { loginRateLimit } from "../middlewares/rateLimit.js";
@@ -34,4 +37,11 @@ router
   .post(verifyJwt, verifyAdmin, updateLeaveReport);
 router.route("/deleteEmployee").post(verifyJwt, verifyAdmin, deleteEmployee);
 router.route("/deleteSalary").post(verifyJwt, verifyAdmin, deleteSalary);
+router.route("/deleteReport").post(verifyJwt, verifyAdmin, deleteProjectReport);
+router
+  .route("/single-project/:projectId")
+  .get(verifyJwt, verifyAdmin, fetchSingleProject);
+router
+  .route("/updateproject/:projectId")
+  .post(verifyJwt, verifyAdmin, updateProjectDetails);
 export default router;
