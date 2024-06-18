@@ -1,32 +1,48 @@
-import './App.css'
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
-import AdminLogin from './components/Admin/AdminLogin'
-import EmployeeLogin from './components/Employee/EmployeeLogin'
-import EmployeeHome from './components/Employee/EmployeeHome'
-import SalaryDetails from './components/Employee/SalaryDetails'
-import ProjectDetails from './components/Employee/ProjectDetails'
-import ProjectReport from './components/Employee/ProjectReport'
-import LeaveReport from './components/Employee/LeaveReport'
-import './App.css'
-import AdminBrowse from './components/Admin/AdminBrowse'
-import AdminEmployees from './components/Admin/AdminEmployees'
-import AdminAddSalary from './components/Admin/AdminAddSalary'
-import AdminAddProject from './components/Admin/AdminAddProject'
-import AdminSalaryDetails from './components/Admin/AdminSalaryDetails'
-import AdminProjectDetails from './components/Admin/AdminProjectDetails'
-import AdminProjectReport from './components/Admin/AdminProjectReport'
-import AdminLeaveReport from './components/Admin/AdminLeaveReport'
-import Browse from './components/Browse'
-import AdminAddEmployee from './components/Admin/AdminAddEmployee'
-import AdminEditProject from './components/Admin/AdminEditProject'
-import AboutUs from './components/footer/AboutUs'
-import Careers from './components/footer/Careers'
-import EmployeePortal from './components/footer/EmployeePortal'
-import ContactUs from './components/footer/ContactUs'
-import Policies from './components/footer/Policies'
-import Benefits from './components/footer/Benefits'
-import Trainings from './components/footer/Trainings'
-import FAQ from './components/footer/FAQ'
+import "./App.css";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import Browse from "./components/Browse";
+const AdminProjectDetails = lazy(() =>
+  import("./components/Admin/AdminProjectDetails")
+);
+const AdminSalaryDetails = lazy(() =>
+  import("./components/Admin/AdminSalaryDetails")
+);
+const AdminAddProject = lazy(() =>
+  import("./components/Admin/AdminAddProject")
+);
+const Trainings = lazy(() => import("./components/footer/Trainings"));
+const AdminAddSalary = lazy(() => import("./components/Admin/AdminAddSalary"));
+const AdminEmployees = lazy(() => import("./components/Admin/AdminEmployees"));
+const AdminBrowse = lazy(() => import("./components/Admin/AdminBrowse"));
+const LeaveReport = lazy(() => import("./components/Employee/LeaveReport"));
+const ProjectReport = lazy(() => import("./components/Employee/ProjectReport"));
+const ProjectDetails = lazy(() =>
+  import("./components/Employee/ProjectDetails")
+);
+const SalaryDetails = lazy(() => import("./components/Employee/SalaryDetails"));
+const EmployeeHome = lazy(() => import("./components/Employee/EmployeeHome"));
+const EmployeeLogin = lazy(() => import("./components/Employee/EmployeeLogin"));
+const AdminLogin = lazy(() => import("./components/Admin/AdminLogin"));
+const FAQ = lazy(() => import("./components/footer/FAQ"));
+const Benefits = lazy(() => import("./components/footer/Benefits"));
+const Policies = lazy(() => import("./components/footer/Policies"));
+const ContactUs = lazy(() => import("./components/footer/ContactUs"));
+const EmployeePortal = lazy(() => import("./components/footer/EmployeePortal"));
+const Careers = lazy(() => import("./components/footer/Careers"));
+const AboutUs = lazy(() => import("./components/footer/AboutUs"));
+const AdminEditProject = lazy(() =>
+  import("./components/Admin/AdminEditProject")
+);
+const AdminAddEmployee = lazy(() =>
+  import("./components/Admin/AdminAddEmployee")
+);
+const AdminLeaveReport = lazy(() =>
+  import("./components/Admin/AdminLeaveReport")
+);
+const AdminProjectReport = lazy(() =>
+  import("./components/Admin/AdminProjectReport")
+);
 
 const Applayout = () => {
   return (
@@ -34,137 +50,249 @@ const Applayout = () => {
       <Browse />
       <Outlet />
     </div>
-  )
-}
+  );
+};
 
 const appRouter = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     Element: <Applayout />,
     children: [
       {
-        path: '/',
-        element: <Browse />,
+        path: "/",
+        element: (
+          <Suspense>
+            <Browse />
+          </Suspense>
+        ),
       },
       {
-        path: '/Adminlogin/',
-        element: <AdminLogin />,
+        path: "/Adminlogin/",
+        element: (
+          <Suspense>
+            <AdminLogin />
+          </Suspense>
+        ),
       },
       {
-        path: '/employeeLogin/',
-        element: <EmployeeLogin />,
+        path: "/employeeLogin/",
+        element: (
+          <Suspense>
+            <EmployeeLogin />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/',
-        element: <AdminBrowse />,
+        path: "/admin/",
+        element: (
+          <Suspense>
+            <AdminBrowse />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/employees',
-        element: <AdminEmployees />,
+        path: "/admin/employees",
+        element: (
+          <Suspense>
+            <AdminEmployees />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/addsalary',
-        element: <AdminAddSalary />,
+        path: "/admin/addsalary",
+        element: (
+          <Suspense>
+            <AdminAddSalary />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/addproject',
-        element: <AdminAddProject />,
+        path: "/admin/addproject",
+        element: (
+          <Suspense>
+            <AdminAddProject />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/salarydetails',
-        element: <AdminSalaryDetails />,
+        path: "/admin/salarydetails",
+        element: (
+          <Suspense>
+            <AdminSalaryDetails />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/projectdetails',
-        element: <AdminProjectDetails />,
+        path: "/admin/projectdetails",
+        element: (
+          <Suspense>
+            <AdminProjectDetails />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/projectreport',
-        element: <AdminProjectReport />,
+        path: "/admin/projectreport",
+        element: (
+          <Suspense>
+            <AdminProjectReport />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/leavereport',
-        element: <AdminLeaveReport />,
+        path: "/admin/leavereport",
+        element: (
+          <Suspense>
+            <AdminLeaveReport />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/addEmployee',
-        element: <AdminAddEmployee />,
+        path: "/admin/addEmployee",
+        element: (
+          <Suspense>
+            <AdminAddEmployee />
+          </Suspense>
+        ),
       },
       {
-        path: '/admin/editProject/:projectId',
-        element: <AdminEditProject />,
+        path: "/admin/editProject/:projectId",
+        element: (
+          <Suspense>
+            <AdminEditProject />
+          </Suspense>
+        ),
       },
       {
-        path: '/Adminlogin/',
-        element: <AdminLogin />,
+        path: "/Adminlogin/",
+        element: (
+          <Suspense>
+            <AdminLogin />
+          </Suspense>
+        ),
       },
       {
-        path: '/employeeLogin/',
-        element: <EmployeeLogin />,
+        path: "/employeeLogin/",
+        element: (
+          <Suspense>
+            <EmployeeLogin />
+          </Suspense>
+        ),
       },
 
       {
-        path: '/employeeHomepage/',
-        element: <EmployeeHome />,
+        path: "/employeeHomepage/",
+        element: (
+          <Suspense>
+            <EmployeeHome />
+          </Suspense>
+        ),
       },
       {
-        path: '/employeeSalaryDetails/',
-        element: <SalaryDetails />,
+        path: "/employeeSalaryDetails/",
+        element: (
+          <Suspense>
+            <SalaryDetails />
+          </Suspense>
+        ),
       },
       {
-        path: '/employeeProjectDetails',
-        element: <ProjectDetails />,
+        path: "/employeeProjectDetails",
+        element: (
+          <Suspense>
+            <ProjectDetails />
+          </Suspense>
+        ),
       },
       {
-        path: '/employeeProjectReport/',
-        element: <ProjectReport />,
+        path: "/employeeProjectReport/",
+        element: (
+          <Suspense>
+            <ProjectReport />
+          </Suspense>
+        ),
       },
       {
-        path: '/employeeLeaveReport/',
-        element: <LeaveReport />,
+        path: "/employeeLeaveReport/",
+        element: (
+          <Suspense>
+            <LeaveReport />
+          </Suspense>
+        ),
       },
       {
-        path: '/about-hr/',
-        element: <AboutUs />,
+        path: "/about-hr/",
+        element: (
+          <Suspense>
+            <AboutUs />
+          </Suspense>
+        ),
       },
       {
-        path: '/careers',
-        element: <Careers />,
+        path: "/careers",
+        element: (
+          <Suspense>
+            <Careers />
+          </Suspense>
+        ),
       },
       {
-        path: '/employee-portal',
-        element: <EmployeePortal />,
+        path: "/employee-portal",
+        element: (
+          <Suspense>
+            <EmployeePortal />
+          </Suspense>
+        ),
       },
       {
-        path: '/contact',
-        element: <ContactUs />,
+        path: "/contact",
+        element: (
+          <Suspense>
+            <ContactUs />
+          </Suspense>
+        ),
       },
       {
-        path: '/policies',
-        element: <Policies />,
+        path: "/policies",
+        element: (
+          <Suspense>
+            <Policies />
+          </Suspense>
+        ),
       },
       {
-        path: '/benefits',
-        element: <Benefits />,
+        path: "/benefits",
+        element: (
+          <Suspense>
+            <Benefits />
+          </Suspense>
+        ),
       },
       {
-        path: '/training',
-        element: <Trainings />,
+        path: "/training",
+        element: (
+          <Suspense>
+            <Trainings />
+          </Suspense>
+        ),
       },
       {
-        path: '/faq',
-        element: <FAQ />,
+        path: "/faq",
+        element: (
+          <Suspense>
+            <FAQ />
+          </Suspense>
+        ),
       },
     ],
   },
-])
+]);
 
 function App() {
   return (
     <div>
       <RouterProvider router={appRouter} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
