@@ -26,7 +26,10 @@ const Footer = () => {
                 className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               >
-                <a href="https://www.instagram.com/codeclub_rguktb/">
+                <a
+                  href="https://www.linkedin.com/company/training-placement-office-rgukt-basar/"
+                  target="blank"
+                >
                   <i className="fab fa-linkedin"></i>
                 </a>
               </button>
@@ -34,7 +37,12 @@ const Footer = () => {
                 className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               >
-                <i className="fab fa-instagram"></i>
+                <a
+                  href="https://www.instagram.com/codeclub_rguktb/"
+                  target="blank"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
               </button>
               <button
                 className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
