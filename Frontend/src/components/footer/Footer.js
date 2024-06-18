@@ -65,14 +65,6 @@ const Footer = () => {
                   <li>
                     <a
                       className="text-white hover:underline font-semibold block pb-2 text-sm"
-                      href="/employee-portal"
-                    >
-                      Employee Portal
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-white hover:underline font-semibold block pb-2 text-sm"
                       href="/contact"
                     >
                       Contact Us

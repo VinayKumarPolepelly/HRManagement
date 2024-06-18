@@ -1,48 +1,45 @@
-import "./App.css";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import { lazy, Suspense } from "react";
-import Browse from "./components/Browse";
+import './App.css'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import Browse from './components/Browse'
 const AdminProjectDetails = lazy(() =>
-  import("./components/Admin/AdminProjectDetails")
-);
+  import('./components/Admin/AdminProjectDetails')
+)
 const AdminSalaryDetails = lazy(() =>
-  import("./components/Admin/AdminSalaryDetails")
-);
-const AdminAddProject = lazy(() =>
-  import("./components/Admin/AdminAddProject")
-);
-const Trainings = lazy(() => import("./components/footer/Trainings"));
-const AdminAddSalary = lazy(() => import("./components/Admin/AdminAddSalary"));
-const AdminEmployees = lazy(() => import("./components/Admin/AdminEmployees"));
-const AdminBrowse = lazy(() => import("./components/Admin/AdminBrowse"));
-const LeaveReport = lazy(() => import("./components/Employee/LeaveReport"));
-const ProjectReport = lazy(() => import("./components/Employee/ProjectReport"));
+  import('./components/Admin/AdminSalaryDetails')
+)
+const AdminAddProject = lazy(() => import('./components/Admin/AdminAddProject'))
+const Trainings = lazy(() => import('./components/footer/Trainings'))
+const AdminAddSalary = lazy(() => import('./components/Admin/AdminAddSalary'))
+const AdminEmployees = lazy(() => import('./components/Admin/AdminEmployees'))
+const AdminBrowse = lazy(() => import('./components/Admin/AdminBrowse'))
+const LeaveReport = lazy(() => import('./components/Employee/LeaveReport'))
+const ProjectReport = lazy(() => import('./components/Employee/ProjectReport'))
 const ProjectDetails = lazy(() =>
-  import("./components/Employee/ProjectDetails")
-);
-const SalaryDetails = lazy(() => import("./components/Employee/SalaryDetails"));
-const EmployeeHome = lazy(() => import("./components/Employee/EmployeeHome"));
-const EmployeeLogin = lazy(() => import("./components/Employee/EmployeeLogin"));
-const AdminLogin = lazy(() => import("./components/Admin/AdminLogin"));
-const FAQ = lazy(() => import("./components/footer/FAQ"));
-const Benefits = lazy(() => import("./components/footer/Benefits"));
-const Policies = lazy(() => import("./components/footer/Policies"));
-const ContactUs = lazy(() => import("./components/footer/ContactUs"));
-const EmployeePortal = lazy(() => import("./components/footer/EmployeePortal"));
-const Careers = lazy(() => import("./components/footer/Careers"));
-const AboutUs = lazy(() => import("./components/footer/AboutUs"));
+  import('./components/Employee/ProjectDetails')
+)
+const SalaryDetails = lazy(() => import('./components/Employee/SalaryDetails'))
+const EmployeeHome = lazy(() => import('./components/Employee/EmployeeHome'))
+const EmployeeLogin = lazy(() => import('./components/Employee/EmployeeLogin'))
+const AdminLogin = lazy(() => import('./components/Admin/AdminLogin'))
+const FAQ = lazy(() => import('./components/footer/FAQ'))
+const Benefits = lazy(() => import('./components/footer/Benefits'))
+const Policies = lazy(() => import('./components/footer/Policies'))
+const ContactUs = lazy(() => import('./components/footer/ContactUs'))
+const Careers = lazy(() => import('./components/footer/Careers'))
+const AboutUs = lazy(() => import('./components/footer/AboutUs'))
 const AdminEditProject = lazy(() =>
-  import("./components/Admin/AdminEditProject")
-);
+  import('./components/Admin/AdminEditProject')
+)
 const AdminAddEmployee = lazy(() =>
-  import("./components/Admin/AdminAddEmployee")
-);
+  import('./components/Admin/AdminAddEmployee')
+)
 const AdminLeaveReport = lazy(() =>
-  import("./components/Admin/AdminLeaveReport")
-);
+  import('./components/Admin/AdminLeaveReport')
+)
 const AdminProjectReport = lazy(() =>
-  import("./components/Admin/AdminProjectReport")
-);
+  import('./components/Admin/AdminProjectReport')
+)
 
 const Applayout = () => {
   return (
@@ -50,16 +47,16 @@ const Applayout = () => {
       <Browse />
       <Outlet />
     </div>
-  );
-};
+  )
+}
 
 const appRouter = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     Element: <Applayout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: (
           <Suspense>
             <Browse />
@@ -67,7 +64,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/Adminlogin/",
+        path: '/Adminlogin/',
         element: (
           <Suspense>
             <AdminLogin />
@@ -75,7 +72,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/employeeLogin/",
+        path: '/employeeLogin/',
         element: (
           <Suspense>
             <EmployeeLogin />
@@ -83,7 +80,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/",
+        path: '/admin/',
         element: (
           <Suspense>
             <AdminBrowse />
@@ -91,7 +88,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/employees",
+        path: '/admin/employees',
         element: (
           <Suspense>
             <AdminEmployees />
@@ -99,7 +96,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/addsalary",
+        path: '/admin/addsalary',
         element: (
           <Suspense>
             <AdminAddSalary />
@@ -107,7 +104,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/addproject",
+        path: '/admin/addproject',
         element: (
           <Suspense>
             <AdminAddProject />
@@ -115,7 +112,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/salarydetails",
+        path: '/admin/salarydetails',
         element: (
           <Suspense>
             <AdminSalaryDetails />
@@ -123,7 +120,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/projectdetails",
+        path: '/admin/projectdetails',
         element: (
           <Suspense>
             <AdminProjectDetails />
@@ -131,7 +128,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/projectreport",
+        path: '/admin/projectreport',
         element: (
           <Suspense>
             <AdminProjectReport />
@@ -139,7 +136,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/leavereport",
+        path: '/admin/leavereport',
         element: (
           <Suspense>
             <AdminLeaveReport />
@@ -147,7 +144,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/addEmployee",
+        path: '/admin/addEmployee',
         element: (
           <Suspense>
             <AdminAddEmployee />
@@ -155,7 +152,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/editProject/:projectId",
+        path: '/admin/editProject/:projectId',
         element: (
           <Suspense>
             <AdminEditProject />
@@ -163,7 +160,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/Adminlogin/",
+        path: '/Adminlogin/',
         element: (
           <Suspense>
             <AdminLogin />
@@ -171,7 +168,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/employeeLogin/",
+        path: '/employeeLogin/',
         element: (
           <Suspense>
             <EmployeeLogin />
@@ -180,7 +177,7 @@ const appRouter = createBrowserRouter([
       },
 
       {
-        path: "/employeeHomepage/",
+        path: '/employeeHomepage/',
         element: (
           <Suspense>
             <EmployeeHome />
@@ -188,7 +185,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/employeeSalaryDetails/",
+        path: '/employeeSalaryDetails/',
         element: (
           <Suspense>
             <SalaryDetails />
@@ -196,7 +193,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/employeeProjectDetails",
+        path: '/employeeProjectDetails',
         element: (
           <Suspense>
             <ProjectDetails />
@@ -204,7 +201,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/employeeProjectReport/",
+        path: '/employeeProjectReport/',
         element: (
           <Suspense>
             <ProjectReport />
@@ -212,7 +209,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/employeeLeaveReport/",
+        path: '/employeeLeaveReport/',
         element: (
           <Suspense>
             <LeaveReport />
@@ -220,7 +217,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/about-hr/",
+        path: '/about-hr/',
         element: (
           <Suspense>
             <AboutUs />
@@ -228,7 +225,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/careers",
+        path: '/careers',
         element: (
           <Suspense>
             <Careers />
@@ -236,15 +233,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/employee-portal",
-        element: (
-          <Suspense>
-            <EmployeePortal />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/contact",
+        path: '/contact',
         element: (
           <Suspense>
             <ContactUs />
@@ -252,7 +241,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/policies",
+        path: '/policies',
         element: (
           <Suspense>
             <Policies />
@@ -260,7 +249,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/benefits",
+        path: '/benefits',
         element: (
           <Suspense>
             <Benefits />
@@ -268,7 +257,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/training",
+        path: '/training',
         element: (
           <Suspense>
             <Trainings />
@@ -276,7 +265,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/faq",
+        path: '/faq',
         element: (
           <Suspense>
             <FAQ />
@@ -285,14 +274,14 @@ const appRouter = createBrowserRouter([
       },
     ],
   },
-]);
+])
 
 function App() {
   return (
     <div>
       <RouterProvider router={appRouter} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

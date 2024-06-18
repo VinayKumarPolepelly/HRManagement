@@ -15,9 +15,6 @@ const FooterHeader = () => {
           <Link to="/careers" className="text-white hover:underline">
             Careers
           </Link>
-          <Link to="/employee-portal" className="text-white hover:underline">
-            Employee Portal
-          </Link>
           <Link to="/contact" className="text-white hover:underline">
             Contact Us
           </Link>
