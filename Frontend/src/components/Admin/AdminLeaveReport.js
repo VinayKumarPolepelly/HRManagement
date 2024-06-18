@@ -75,8 +75,8 @@ const AdminLeaveReport = () => {
     <div>
       <ToastContainer />
       <AdminHeader />
-      <div className="p-2">
-        <div className="bg-gray-100 h-[600px] m-auto mt-6">
+      <div className="p-2 mb-[600px]">
+        <div className="bg-gray-100 h-[500px] m-auto mt-6">
           <div className="bg-blue-900 p-3 rounded-t-2xl text-center">
             <h1 className="text-white font-bold text-xl">LEAVE REQUESTS</h1>
           </div>
