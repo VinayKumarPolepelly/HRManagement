@@ -129,7 +129,7 @@ const LeaveReport = () => {
                       return (
                         <tr
                           key={leave._id}
-                          className="bg-gray-200  border-b-2 border-white  hover:bg-gray-100"
+                          className="bg-gray-100  border-b-2 border-white  hover:bg-gray-50"
                         >
                           <td className="px-6 py-4 whitespace-no-wrap">
                             {formatDateAndTime(leave.createdAt)}

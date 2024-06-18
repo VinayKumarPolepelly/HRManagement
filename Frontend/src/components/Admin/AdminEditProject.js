@@ -1,50 +1,50 @@
-import React, { useEffect, useRef, useState } from 'react'
-import AdminHeader from './AdminHeader'
-import { useNavigate, useParams } from 'react-router-dom'
-import Select from 'react-select'
-import { BASE_URL } from '../helper'
-import { toast, ToastContainer } from 'react-toastify' // Import ToastContainer and toast
-import 'react-toastify/dist/ReactToastify.css'
+import React, { useEffect, useRef, useState } from "react";
+import AdminHeader from "./AdminHeader";
+import { useNavigate, useParams } from "react-router-dom";
+import Select from "react-select";
+import { BASE_URL } from "../helper";
+import { toast, ToastContainer } from "react-toastify"; // Import ToastContainer and toast
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminEditProject = () => {
-  const [employees, setEmployees] = useState([])
-  const [selectedEmployees, setSelectedEmployees] = useState([])
-  const [error, setError] = useState(null) // Add state for error
-  const [project, setProject] = useState([]) // Add state for project
-  const navigate = useNavigate()
+  const [employees, setEmployees] = useState([]);
+  const [selectedEmployees, setSelectedEmployees] = useState([]);
+  const [error, setError] = useState(null); // Add state for error
+  const [project, setProject] = useState([]); // Add state for project
+  const navigate = useNavigate();
 
-  const projectTitle = useRef()
-  const clientName = useRef()
-  const projectType = useRef()
-  const developingPlatform = useRef()
-  const databaseTechnology = useRef()
-  const projectDescription = useRef()
+  const projectTitle = useRef();
+  const clientName = useRef();
+  const projectType = useRef();
+  const developingPlatform = useRef();
+  const databaseTechnology = useRef();
+  const projectDescription = useRef();
 
-  const { projectId } = useParams()
+  const { projectId } = useParams();
 
   useEffect(() => {
     const fetchEmployeeDetails = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/v1/admins/getEmployees`, {
-          method: 'GET',
-          credentials: 'include', // Include credentials (cookies)
+          method: "GET",
+          credentials: "include", // Include credentials (cookies)
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-        })
+        });
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const json = await response.json()
-        setEmployees(json)
+        const json = await response.json();
+        setEmployees(json);
       } catch (error) {
-        if (error.message === 'Network response was not ok') navigate('/')
-        setError('Error fetching employee data') // Set error message
+        if (error.message === "Network response was not ok") navigate("/");
+        setError("Error fetching employee data"); // Set error message
       }
-    }
+    };
 
-    fetchEmployeeDetails()
-  }, [navigate])
+    fetchEmployeeDetails();
+  }, [navigate]);
 
   useEffect(() => {
     const fetchProjectDetails = async () => {
@@ -52,56 +52,56 @@ const AdminEditProject = () => {
         const response = await fetch(
           `${BASE_URL}/api/v1/admins/single-project/${projectId}`,
           {
-            method: 'GET',
-            credentials: 'include', // Include credentials (cookies)
+            method: "GET",
+            credentials: "include", // Include credentials (cookies)
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           }
-        )
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const json = await response.json()
-        setProject(json.project)
+        const json = await response.json();
+        setProject(json.project);
         setSelectedEmployees(
           json.project.projectManagers.map((manager) => ({
             value: manager,
             label: manager,
           }))
-        )
+        );
       } catch (error) {
-        console.log('Error fetching project data') // Set error message
+        console.log("Error fetching project data"); // Set error message
       }
-    }
-    fetchProjectDetails()
-  }, [projectId])
+    };
+    fetchProjectDetails();
+  }, [projectId]);
 
   useEffect(() => {
     if (project) {
-      projectTitle.current.value = project.projectTitle || ''
-      clientName.current.value = project.clientName || ''
-      projectType.current.value = project.projectType || ''
-      developingPlatform.current.value = project.developingPlatform || ''
-      databaseTechnology.current.value = project.databaseTechnology || ''
-      projectDescription.current.value = project.projectDescription || ''
+      projectTitle.current.value = project.projectTitle || "";
+      clientName.current.value = project.clientName || "";
+      projectType.current.value = project.projectType || "";
+      developingPlatform.current.value = project.developingPlatform || "";
+      databaseTechnology.current.value = project.databaseTechnology || "";
+      projectDescription.current.value = project.projectDescription || "";
     }
-  }, [project])
+  }, [project]);
 
   const resetForm = () => {
-    projectTitle.current.value = ''
-    clientName.current.value = ''
-    projectType.current.value = ''
-    developingPlatform.current.value = ''
-    databaseTechnology.current.value = ''
-    projectDescription.current.value = ''
-    setSelectedEmployees([])
-  }
+    projectTitle.current.value = "";
+    clientName.current.value = "";
+    projectType.current.value = "";
+    developingPlatform.current.value = "";
+    databaseTechnology.current.value = "";
+    projectDescription.current.value = "";
+    setSelectedEmployees([]);
+  };
 
   const handlesubmitform = async (e) => {
-    e.preventDefault()
-    const url = `${BASE_URL}/api/v1/admins/updateproject/${projectId}`
-    let submissionError = null
+    e.preventDefault();
+    const url = `${BASE_URL}/api/v1/admins/updateproject/${projectId}`;
+    let submissionError = null;
 
     for (const employee of selectedEmployees) {
       const data = {
@@ -112,45 +112,45 @@ const AdminEditProject = () => {
         databaseTechnology: databaseTechnology.current.value,
         projectDescription: projectDescription.current.value,
         projectManager: employee.value,
-      }
+      };
 
-      const projectDetails = JSON.stringify(data)
-      console.log(projectDetails)
+      const projectDetails = JSON.stringify(data);
+      console.log(projectDetails);
 
       try {
         const response = await fetch(url, {
-          method: 'POST',
-          credentials: 'include',
+          method: "POST",
+          credentials: "include",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: projectDetails,
-        })
+        });
 
-        const data2 = await response.json()
+        const data2 = await response.json();
         if (!response.ok) {
-          console.log(data2)
-          submissionError = data2?.message
-          setError(submissionError)
+          console.log(data2);
+          submissionError = data2?.message;
+          setError(submissionError);
         } else {
-          toast.success('Project updated successfully')
+          toast.success("Project updated successfully");
           setTimeout(() => {
-            navigate('/admin/projectdetails')
-          }, 1000)
-          resetForm()
+            navigate("/admin/projectdetails");
+          }, 1000);
+          resetForm();
         }
       } catch (error) {
-        console.error('Submit error:', error)
-        submissionError = 'Error submitting project data'
-        setError(submissionError)
+        console.error("Submit error:", error);
+        submissionError = "Error submitting project data";
+        setError(submissionError);
       }
     }
-  }
+  };
 
   const employeeOptions = employees.map((employee) => ({
     value: employee.username,
     label: employee.username,
-  }))
+  }));
 
   return (
     <div>
@@ -244,7 +244,7 @@ const AdminEditProject = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminEditProject
+export default AdminEditProject;

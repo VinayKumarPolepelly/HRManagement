@@ -52,12 +52,28 @@ const AdminAddProject = () => {
     databaseTechnology.current.value = "";
     projectDescription.current.value = "";
     setSelectedEmployees([]);
+    setError(null); // Reset error state
   };
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
+    setError(null); // Reset error state before new submission
+
+    // Client-side validation
+    if (
+      !projectTitle.current.value ||
+      !clientName.current.value ||
+      !projectType.current.value ||
+      !selectedEmployees.length ||
+      !developingPlatform.current.value ||
+      !databaseTechnology.current.value ||
+      !projectDescription.current.value
+    ) {
+      setError("All fields are required.");
+      return;
+    }
+
     const url = `${BASE_URL}/api/v1/admins/addProject`;
-    let submissionError = null;
 
     for (const employee of selectedEmployees) {
       const data = {
@@ -82,18 +98,21 @@ const AdminAddProject = () => {
           body: projectDetails,
         });
 
-        const data2 = await response.json();
         if (!response.ok) {
-          submissionError = data2?.message;
-          setError(submissionError);
-        } else {
-          toast.success("Project(s) added successfully");
-          resetForm();
+          const data2 = await response.json();
+          console.log("Response not OK:", data2);
+          throw new Error(data2?.message || "Error submitting project data");
         }
+
+        const data2 = await response.json();
+        console.log("Response OK:", data2);
+
+        toast.success("Project(s) added successfully");
+        resetForm();
       } catch (error) {
         console.error("Submit error:", error);
-        submissionError = "Error submitting project data";
-        setError(submissionError);
+        setError(error.message);
+        toast.error(error.message);
       }
     }
   };
