@@ -1,44 +1,44 @@
-import React, { useEffect, useState } from 'react'
-import AdminHeader from './AdminHeader'
-import { Link, useNavigate } from 'react-router-dom'
-import { BASE_URL } from '../helper'
-import Footer from '../footer/Footer'
+import React, { useEffect, useState } from "react";
+import AdminHeader from "./AdminHeader";
+import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../helper";
+import Footer from "../footer/Footer";
 
 const AdminProjectDetails = () => {
-  const [projects, setProjects] = useState([])
-  const [error, setError] = useState(null)
-  const navigate = useNavigate()
+  const [projects, setProjects] = useState([]);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProjectDetails = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/v1/admins/getProjects`, {
-          method: 'GET',
-          credentials: 'include', // Include credentials (cookies)
+          method: "GET",
+          credentials: "include", // Include credentials (cookies)
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-        })
+        });
         //console.log(response);
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const json = await response.json()
+        const json = await response.json();
         if (json?.projects) {
-          setProjects(json.projects)
-          console.log(json.projects)
+          setProjects(json.projects);
+          console.log(json.projects);
         } else {
-          throw new Error('No projects field in response')
+          throw new Error("No projects field in response");
         }
       } catch (error) {
         //console.log(error.message);
-        if (error.message === 'Network response was not ok') navigate('/')
-        setError('Error fetching project data')
+        if (error.message === "Network response was not ok") navigate("/");
+        setError("Error fetching project data");
       }
-    }
+    };
 
-    fetchProjectDetails()
-  }, [navigate])
+    fetchProjectDetails();
+  }, [navigate]);
 
   return (
     <div>
@@ -86,7 +86,7 @@ const AdminProjectDetails = () => {
                     projects.map((project) => (
                       <tr
                         key={project._id}
-                        className="hover:bg-gray-50 dark:hover:bg-gray-300"
+                        className="bg-gray-200  border-b-2 border-white  hover:bg-gray-100"
                       >
                         <td className="px-6 py-3 w-1/12 whitespace-wrap break-all font-normal text-center">
                           {project.projectTitle}
@@ -138,7 +138,7 @@ const AdminProjectDetails = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default AdminProjectDetails
+export default AdminProjectDetails;

@@ -128,7 +128,7 @@ const AdminEmployees = () => {
                   {employees.map((employee) => (
                     <tr
                       key={employee._id}
-                      className="hover:bg-gray-50 dark:hover:bg-gray-300"
+                      className="bg-gray-200  border-b-2 border-white  hover:bg-gray-100"
                     >
                       <td className="px-6 py-4 whitespace-no-wrap font-normal">
                         {employee.username}

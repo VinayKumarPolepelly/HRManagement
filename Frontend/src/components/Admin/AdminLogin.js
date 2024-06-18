@@ -44,7 +44,7 @@ const AdminLogin = () => {
       else navigate(`/employeeHomepage`);
     } catch (error) {
       if (error.message === "Unauthorized request") navigate("/");
-      console.error("Login error:", error.message);
+      console.log("Login error:", error.message);
       // Handle login error
     }
   };

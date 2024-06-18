@@ -1,63 +1,63 @@
-import React, { useEffect, useRef, useState } from 'react'
-import AdminHeader from './AdminHeader'
-import { useNavigate } from 'react-router-dom'
-import Select from 'react-select'
-import { BASE_URL } from '../helper'
-import { toast, ToastContainer } from 'react-toastify' // Import ToastContainer and toast
-import 'react-toastify/dist/ReactToastify.css'
-import Footer from '../footer/Footer'
+import React, { useEffect, useRef, useState } from "react";
+import AdminHeader from "./AdminHeader";
+import { useNavigate } from "react-router-dom";
+import Select from "react-select";
+import { BASE_URL } from "../helper";
+import { toast, ToastContainer } from "react-toastify"; // Import ToastContainer and toast
+import "react-toastify/dist/ReactToastify.css";
+import Footer from "../footer/Footer";
 
 const AdminAddProject = () => {
-  const [employees, setEmployees] = useState([])
-  const [selectedEmployees, setSelectedEmployees] = useState([])
-  const [error, setError] = useState(null) // Add state for error
-  const navigate = useNavigate()
+  const [employees, setEmployees] = useState([]);
+  const [selectedEmployees, setSelectedEmployees] = useState([]);
+  const [error, setError] = useState(null); // Add state for error
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEmployeeDetails = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/v1/admins/getEmployees`, {
-          method: 'GET',
-          credentials: 'include', // Include credentials (cookies)
+          method: "GET",
+          credentials: "include", // Include credentials (cookies)
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-        })
+        });
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const json = await response.json()
-        setEmployees(json)
+        const json = await response.json();
+        setEmployees(json);
       } catch (error) {
-        if (error.message === 'Network response was not ok') navigate('/')
-        setError('Error fetching employee data') // Set error message
+        if (error.message === "Network response was not ok") navigate("/");
+        setError("Error fetching employee data"); // Set error message
       }
-    }
+    };
 
-    fetchEmployeeDetails()
-  }, [navigate])
+    fetchEmployeeDetails();
+  }, [navigate]);
 
-  const projectTitle = useRef()
-  const clientName = useRef()
-  const projectType = useRef()
-  const developingPlatform = useRef()
-  const databaseTechnology = useRef()
-  const projectDescription = useRef()
+  const projectTitle = useRef();
+  const clientName = useRef();
+  const projectType = useRef();
+  const developingPlatform = useRef();
+  const databaseTechnology = useRef();
+  const projectDescription = useRef();
 
   const resetForm = () => {
-    projectTitle.current.value = ''
-    clientName.current.value = ''
-    projectType.current.value = ''
-    developingPlatform.current.value = ''
-    databaseTechnology.current.value = ''
-    projectDescription.current.value = ''
-    setSelectedEmployees([])
-  }
+    projectTitle.current.value = "";
+    clientName.current.value = "";
+    projectType.current.value = "";
+    developingPlatform.current.value = "";
+    databaseTechnology.current.value = "";
+    projectDescription.current.value = "";
+    setSelectedEmployees([]);
+  };
 
   const handleSubmitForm = async (e) => {
-    e.preventDefault()
-    const url = `${BASE_URL}/api/v1/admins/addProject`
-    let submissionError = null
+    e.preventDefault();
+    const url = `${BASE_URL}/api/v1/admins/addProject`;
+    let submissionError = null;
 
     for (const employee of selectedEmployees) {
       const data = {
@@ -68,40 +68,40 @@ const AdminAddProject = () => {
         databaseTechnology: databaseTechnology.current.value,
         projectDescription: projectDescription.current.value,
         projectManager: employee.value,
-      }
+      };
 
-      const projectDetails = JSON.stringify(data)
+      const projectDetails = JSON.stringify(data);
 
       try {
         const response = await fetch(url, {
-          method: 'POST',
-          credentials: 'include',
+          method: "POST",
+          credentials: "include",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: projectDetails,
-        })
+        });
 
-        const data2 = await response.json()
+        const data2 = await response.json();
         if (!response.ok) {
-          submissionError = data2?.message
-          setError(submissionError)
+          submissionError = data2?.message;
+          setError(submissionError);
         } else {
-          toast.success('Project(s) added successfully')
-          resetForm()
+          toast.success("Project(s) added successfully");
+          resetForm();
         }
       } catch (error) {
-        console.error('Submit error:', error)
-        submissionError = 'Error submitting project data'
-        setError(submissionError)
+        console.error("Submit error:", error);
+        submissionError = "Error submitting project data";
+        setError(submissionError);
       }
     }
-  }
+  };
 
   const employeeOptions = employees.map((employee) => ({
     value: employee.username,
     label: employee.username,
-  }))
+  }));
 
   return (
     <div>
@@ -197,7 +197,7 @@ const AdminAddProject = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default AdminAddProject
+export default AdminAddProject;

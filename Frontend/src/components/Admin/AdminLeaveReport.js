@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import AdminHeader from './AdminHeader'
-import { useNavigate } from 'react-router-dom'
-import { BASE_URL } from '../helper'
-import { toast, ToastContainer } from 'react-toastify' // Import ToastContainer and toast
-import 'react-toastify/dist/ReactToastify.css'
-import Footer from '../footer/Footer'
+import React, { useState, useEffect } from "react";
+import AdminHeader from "./AdminHeader";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../helper";
+import { toast, ToastContainer } from "react-toastify"; // Import ToastContainer and toast
+import "react-toastify/dist/ReactToastify.css";
+import Footer from "../footer/Footer";
 
 const AdminLeaveReport = () => {
-  const [leaves, setLeaves] = useState([])
-  const [error, setError] = useState(null)
-  const navigate = useNavigate()
+  const [leaves, setLeaves] = useState([]);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLeaveReports = async () => {
@@ -17,36 +17,36 @@ const AdminLeaveReport = () => {
         const response = await fetch(
           `${BASE_URL}/api/v1/admins/getLeaveReports`,
           {
-            method: 'GET',
-            credentials: 'include', // Include credentials (cookies)
+            method: "GET",
+            credentials: "include", // Include credentials (cookies)
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           }
-        )
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const json = await response.json()
-        setLeaves(json.LeaveReports)
+        const json = await response.json();
+        setLeaves(json.LeaveReports);
       } catch (error) {
-        if (error.message === 'Network response was not ok') navigate('/')
-        setError('Error fetching leave data')
+        if (error.message === "Network response was not ok") navigate("/");
+        setError("Error fetching leave data");
       }
-    }
+    };
 
-    fetchLeaveReports()
-  }, [navigate])
+    fetchLeaveReports();
+  }, [navigate]);
 
   const handleStatusSubmit = async (leaveId, user, status) => {
     try {
       const response = await fetch(
         `${BASE_URL}/api/v1/admins/updateLeaveReport`,
         {
-          method: 'POST',
-          credentials: 'include',
+          method: "POST",
+          credentials: "include",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             user: user,
@@ -54,22 +54,22 @@ const AdminLeaveReport = () => {
             leaveId: leaveId,
           }),
         }
-      )
+      );
       if (!response.ok) {
-        throw new Error('Network response was not ok')
+        throw new Error("Network response was not ok");
       }
-      toast.success('Status updated successfully')
+      toast.success("Status updated successfully");
       // Optionally, update the state to reflect the changes without reloading
       setLeaves((prevLeaves) =>
         prevLeaves.map((leave) =>
           leave._id === leaveId ? { ...leave, status: status } : leave
         )
-      )
+      );
     } catch (error) {
-      console.log(error)
-      setError('Error updating leave status')
+      console.log(error);
+      setError("Error updating leave status");
     }
-  }
+  };
 
   return (
     <div>
@@ -104,9 +104,12 @@ const AdminLeaveReport = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="">
                 {leaves.map((leave) => (
-                  <tr key={leave._id} className=" dark:hover:bg-gray-300">
+                  <tr
+                    key={leave._id}
+                    className=" bg-gray-200  border-b-2 border-white  hover:bg-gray-100"
+                  >
                     <td className="px-6 py-4 whitespace-no-wrap font-normal">
                       {leave.user}
                     </td>
@@ -124,6 +127,7 @@ const AdminLeaveReport = () => {
                     </td>
                     <td className="px-5 py-4 whitespace-no-wrap font-normal">
                       <select
+                        className="p-1 rounded-md"
                         defaultValue={leave.status}
                         onChange={(e) =>
                           handleStatusSubmit(
@@ -152,7 +156,7 @@ const AdminLeaveReport = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default AdminLeaveReport
+export default AdminLeaveReport;

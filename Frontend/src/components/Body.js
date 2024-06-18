@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Body = () => {
   return (
@@ -17,16 +17,15 @@ const Body = () => {
             width="600"
             height="450"
             style={{ border: 0 }}
-            allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
             className="ml-1 mt-11 mr-16"
             title="RGUKTLOGO"
           ></iframe>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Body
+export default Body;

@@ -1,7 +1,7 @@
-import React from 'react'
-import '@fortawesome/fontawesome-free/css/all.min.css'
-import 'tailwindcss/tailwind.css'
-import { Link } from 'react-router-dom'
+import React from "react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "tailwindcss/tailwind.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -126,7 +126,7 @@ const Footer = () => {
         <div className="flex flex-wrap items-center md:justify-between justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
             <div className="text-sm text-blueGray-500 font-semibold py-1">
-              Copyright © {new Date().getFullYear()}{' '}
+              Copyright © {new Date().getFullYear()}{" "}
               <a
                 href="https://www.yourcompany.com"
                 className="text-white hover:underline"
@@ -141,7 +141,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

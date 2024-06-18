@@ -156,7 +156,7 @@ const AdminEditProject = () => {
     <div>
       <ToastContainer />
       <AdminHeader />
-      <div className="bg-violet-600 h-[100vh]">
+      <div className="bg-white h-[100vh]">
         <h1 className="text-center text-white text-xl font-bold py-5">
           EDIT PROJECT
         </h1>
@@ -164,36 +164,36 @@ const AdminEditProject = () => {
           <div className="flex flex-row m-4 flex-wrap">
             <div className="px-8 py-5">
               <div className="flex flex-col">
-                <label className="text-white pl-1 py-2">Project Name</label>
+                <label className="text-black pl-1 py-2">Project Name</label>
                 <input
                   ref={projectTitle}
                   type="text"
-                  className="w-[40vw] h-[40px] rounded-xl"
+                  className="w-[40vw] h-[40px] rounded-md border border-gray-900 px-2"
                 />
               </div>
               <div className="flex flex-col my-5">
-                <label className="text-white pl-1 py-2">Project Type</label>
+                <label className="text-black pl-1 py-2">Project Type</label>
                 <input
                   ref={clientName}
                   type="text"
-                  className="w-[40vw] h-[40px] rounded-xl"
+                  className="w-[40vw] h-[40px] rounded-md border border-gray-900 px-2"
                 />
               </div>
               <div className="flex flex-col my-5">
-                <label className="text-white pl-1 py-2">Client Name</label>
+                <label className="text-black pl-1 py-2 ">Client Name</label>
                 <input
                   ref={projectType}
                   type="text"
-                  className="w-[40vw] h-[40px] rounded-xl"
+                  className="w-[40vw] h-[40px] rounded-md border border-gray-900 px-2"
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-white pl-1 py-2">Project Manager</label>
+                <label className="text-black pl-1 py-2">Project Manager</label>
                 <Select
                   isMulti
                   name="projectManagers"
                   options={employeeOptions}
-                  className="basic-multi-select"
+                  className="basic-multi-select border border-gray-900 rounded-md"
                   classNamePrefix="select"
                   value={selectedEmployees}
                   onChange={setSelectedEmployees}
@@ -202,33 +202,33 @@ const AdminEditProject = () => {
             </div>
             <div className="pl-32 py-5">
               <div className="flex flex-col">
-                <label className="text-white pl-1 py-2">
+                <label className="text-black pl-1 py-2">
                   Developing Platform
                 </label>
                 <input
                   ref={developingPlatform}
                   type="text"
-                  className="w-[40vw] h-[40px] rounded-xl"
+                  className="w-[40vw] h-[40px] rounded-md border border-gray-900 px-2"
                 />
               </div>
               <div className="flex flex-col my-5">
-                <label className="text-white pl-1 py-2">
+                <label className="text-black pl-1 py-2">
                   Database Technology
                 </label>
                 <input
                   ref={databaseTechnology}
                   type="text"
-                  className="w-[40vw] h-[40px] rounded-xl"
+                  className="w-[40vw] h-[40px] rounded-md border border-gray-900 px-2"
                 />
               </div>
               <div className="flex flex-col my-5">
-                <label className="text-white pl-1 py-2">
+                <label className="text-black pl-1 py-2">
                   Project Description
                 </label>
                 <input
                   ref={projectDescription}
                   type="text"
-                  className="w-[40vw] h-[120px] rounded-xl"
+                  className="w-[40vw] h-[120px] rounded-md border border-gray-900 px-2"
                 />
               </div>
             </div>

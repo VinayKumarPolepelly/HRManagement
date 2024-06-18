@@ -6,7 +6,7 @@ import adminRouter from "./routes/admin.routes.js";
 const app = express();
 
 const corsOptions = {
-  origin: ["https://visanikhr.netlify.app", "http://localhost:3000"], // Frontend domain
+  origin: "http://localhost:3000", // Frontend domain
   credentials: true, // Allow credentials (cookies) to be sent
 };
 
