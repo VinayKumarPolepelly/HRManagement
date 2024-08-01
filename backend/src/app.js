@@ -6,8 +6,8 @@ import adminRouter from "./routes/admin.routes.js";
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Frontend domain
-  credentials: true, // Allow credentials (cookies) to be sent
+  origin: "http://localhost:3000",
+  credentials: true,
 };
 
 app.use(cors(corsOptions));

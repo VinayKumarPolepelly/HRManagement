@@ -69,14 +69,14 @@ const AdminLogin = () => {
             <input
               type="text"
               ref={username}
-              placeholder="Enter Username"
+              placeholder="Employee:vinay | Admin:vinaykumar"
               className="mb-4 p-3 border-2 border-gray-500 text-md rounded-lg w-[18em]"
             />
             <label className="mb-2 text-lg  text-blue-900">Password</label>
             <input
               type="password"
               ref={password}
-              placeholder="Enter Password"
+              placeholder="Password: rgukt123"
               className="mb-6 p-3 border-2 border-gray-500 text-md rounded-lg"
             />
             {error && (
