@@ -6,7 +6,7 @@ import adminRouter from "./routes/admin.routes.js";
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://hr-management-mern.vercel.app",
   credentials: true,
 };
 
