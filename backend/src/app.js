@@ -6,7 +6,7 @@ import adminRouter from "./routes/admin.routes.js";
 const app = express();
 
 const corsOptions = {
-  origin: "https://visanikhr.netlify.app",
+  origin: "https://hr-management-un7z.vercel.app",
   credentials: true,
 };
 
