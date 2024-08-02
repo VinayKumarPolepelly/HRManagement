@@ -1,1 +1,1 @@
-export const BASE_URL = "https://hr-management-mu.vercel.app";
+export const BASE_URL = "https://hr-1.onrender.com";
